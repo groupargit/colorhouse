@@ -12,6 +12,8 @@ import {
 import Spinner from 'react-native-loading-spinner-overlay';
 import {useNavigation} from '@react-navigation/native';
 import {useAuth0} from 'react-native-auth0';
+import Carousel from 'react-native-intro-carousel';
+const image = require('../../../assets/GrouparLogo.png');
 
 const Login = state => {
   const {authorize, clearSession, user, getCredentials} = useAuth0();
@@ -44,13 +46,61 @@ const Login = state => {
       source={require('../../../assets/background.png')}
       style={styles.image}>
       <SafeAreaView style={styles.container}>
-        <Image
-          source={require('../../../assets/GrouparLogo.png')}
-          style={styles.logo}
-        />
-        <Image
-          source={require('../../../assets/GrouparText.png')}
-          style={styles.logoliteral}
+        <Carousel
+          data={[
+            {
+              key: '1',
+              title: 'Cool package',
+              description: 'Loren ipsum dolor sit amet',
+              image,
+            },
+            {
+              key: '2',
+              title: 'Good information here',
+              description: 'Loren ipsum dolor sit amet',
+              image,
+              data: {
+                rightImage: true,
+              },
+            },
+            {
+              key: '3',
+              title: 'Awesome',
+              description: 'Loren ipsum dolor sit amet',
+              image,
+            },
+          ]}
+          buttonsConfig={{
+            disabled: true,
+          }}
+          paginationConfig={{
+            bottomOffset: 8,
+            dotIncreaseSize: 1,
+            animated: true,
+            dotSize: 10,
+          }}
+          renderItem={({item}) => (
+            <View style={styles.item}>
+              <View
+                style={[
+                  styles.itemContent,
+                  {
+                    backgroundColor: item.backgroundColor,
+                  },
+                ]}>
+                {!item?.data?.rightImage && (
+                  <Image source={item.image} style={styles.imageBanner} />
+                )}
+                <View style={styles.text}>
+                  <Text style={styles.title}>{item.title}</Text>
+                  <Text style={styles.description}>{item.description}</Text>
+                </View>
+                {item?.data?.rightImage && (
+                  <Image source={item.image} style={styles.imageBanner} />
+                )}
+              </View>
+            </View>
+          )}
         />
         <View>
           <TouchableOpacity
@@ -67,6 +117,10 @@ const Login = state => {
             )}
           </TouchableOpacity>
         </View>
+        <Image
+          source={require('../../../assets/GrouparLogo.png')}
+          style={styles.logo}
+        />
         <Text style={styles.textByGroupar}>By Groupar</Text>
       </SafeAreaView>
     </ImageBackground>
@@ -75,21 +129,23 @@ const Login = state => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
     alignItems: 'center',
+    paddingTop: 100,
   },
   textByGroupar: {
     flex: 1,
     justifyContent: 'flex-end',
-    marginTop: 50,
-    fontSize: 18,
+    marginTop: 2,
+    fontSize: 14,
   },
   logo: {
-    height: 80,
+    height: 35,
     resizeMode: 'contain',
     marginTop: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: 5,
   },
   spinnerTextStyle: {
     color: '#FFF',
@@ -106,21 +162,10 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     justifyContent: 'center',
   },
-  input: {
-    marginBottom: 10,
-    marginTop: 5,
-    width: 350,
-    height: 60,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-    fontSize: 18,
-    backgroundColor: '#838383',
-    color: 'white',
-  },
   button: {
     backgroundColor: '#99c84a',
     borderRadius: 5,
-    marginTop: 20,
+    marginTop: 70,
   },
   buttonLabel: {
     color: 'white',
@@ -128,6 +173,44 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  item: {
+    padding: 10,
+    width: '100%',
+    height: '100%',
+  },
+  itemContent: {
+    borderRadius: 15,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    overflow: 'hidden',
+  },
+  imageBanner: {
+    width: 120,
+    height: 120,
+  },
+  text: {},
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginLeft: 10,
+  },
+  description: {
+    fontSize: 15,
+    color: '#fff',
+    marginLeft: 10,
+  },
+  imageBanner2: {
+    width: '100%',
+    height: '100%',
+  },
+  bannerContainer: {
+    height: 220,
+    marginTop: 300,
   },
 });
 export default Login;
