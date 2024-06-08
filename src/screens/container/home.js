@@ -18,14 +18,14 @@ const Home = state => {
   };
   return (
     <Fragment>
-      <Header>
+      {/* <Header>
         <Text style={styles.buttonLabel}>Home</Text>
         <TouchableOpacity onPress={handleClose} style={styles.button}>
           <Text style={styles.buttonLabel}>Cerrar Sesión</Text>
         </TouchableOpacity>
-      </Header>
+      </Header> */}
       <AsignaturaList />
-      <ActivityList />
+      {/* <ActivityList /> */}
     </Fragment>
   );
 };

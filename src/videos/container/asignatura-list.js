@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, Button, Text, View, StyleSheet} from 'react-native';
 import Layout from '../components/asignatura-list-layout';
 import Empty from '../components/empty';
 import Separator from '../../videos/components/vertical-separator';
 import Asignatura from '../components/asignatura';
 import {useNavigation} from '@react-navigation/native';
+import {useAuth0} from 'react-native-auth0';
 
 const AsignaturaList = props => {
-  console.log('Props AsignaturaList:', props);
+  const {user} = useAuth0();
   const navigation = useNavigation();
   const [subject] = useState([]);
 
@@ -44,7 +45,8 @@ const AsignaturaList = props => {
   // }, [loginSuccess]);
 
   const viewSubject = item => {
-    navigation.navigate('Actividad', {item: item});
+    //navigation.navigate('Actividad', {item: item});
+    console.log('View item---- Subject:', item);
   };
 
   const renderItem = ({item}) => {
@@ -59,17 +61,33 @@ const AsignaturaList = props => {
   };
 
   return (
-    <Layout>
-      <FlatList
-        keyExtractor={keyExtractor}
-        data={subject}
-        ListEmptyComponent={renderEmpty}
-        ItemSeparatorComponent={itemSeparator}
-        renderItem={renderItem}
-      />
-    </Layout>
+    <View style={styles.container}>
+      {user ? (
+        <Layout>
+          <FlatList
+            keyExtractor={keyExtractor}
+            data={subject}
+            ListEmptyComponent={renderEmpty}
+            ItemSeparatorComponent={itemSeparator}
+            renderItem={renderItem}
+          />
+        </Layout>
+      ) : (
+        //Return login screen
+        navigation.navigate('Login')
+      )}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+});
 
 export default AsignaturaList;
 

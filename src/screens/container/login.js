@@ -21,7 +21,6 @@ const Login = state => {
     setLoading(true);
     await authorize({}, {});
     const credentials = await getCredentials();
-    onLogout();
     state.userReducer;
     login(credentials?.accessToken);
   };
