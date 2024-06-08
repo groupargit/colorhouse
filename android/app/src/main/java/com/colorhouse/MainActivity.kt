@@ -4,6 +4,9 @@ import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
+import android.os.Bundle;
+import com.facebook.react.ReactInstanceManager;
+import com.reactnativettlockupgrade.TtlockUpgradeModule
 
 class MainActivity : ReactActivity() {
 
@@ -19,4 +22,18 @@ class MainActivity : ReactActivity() {
    */
   override fun createReactActivityDelegate(): ReactActivityDelegate =
       DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
+
+  // /** permision result */
+  // override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+  //   super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+  //   val permissionListener = PermissionListenerRegistry.get(requestCode)
+  //   permissionListener?.onRequestPermissionsResult(permissions, grantResults)
+  // }
+
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    val mReactInstanceManager = reactNativeHost.reactInstanceManager
+
+    //val ttlockModule = mReactInstanceManager.currentReactContext!!.getNativeModule(TtlockUpgradeModule::class.java)
+}
 }

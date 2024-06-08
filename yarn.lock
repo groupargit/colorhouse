@@ -3273,7 +3273,7 @@ __metadata:
     react-native-safe-area-context: ^4.10.4
     react-native-screens: ^3.31.1
     react-native-splash-screen: ^3.3.0
-    react-native-ttlock: ^2.1.4
+    react-native-ttlock-upgrade: "https://github.com/ttlock/react-native-ttlock-upgrade.git"
     react-redux: ^9.1.2
     react-test-renderer: 18.2.0
     typescript: 5.0.4
@@ -3934,9 +3934,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001587":
-  version: 1.0.30001628
-  resolution: "caniuse-lite@npm:1.0.30001628"
-  checksum: b5dcdaeb0117a02b3c42f5bc2922cad97546cb8eb3820f14fc7a1f566f6d477df89cf43ed9b43a354f6059ea4009eed89f7b7e741d17d2c8d3c21e0b7d56e31d
+  version: 1.0.30001629
+  resolution: "caniuse-lite@npm:1.0.30001629"
+  checksum: c5e646e1b309b2a70b01499e0f0fca3a54bc111212f121b32614fe925b8f24ff6c1832a4306ddadf35678fbb11a6a97f953be07ccdc96bce5b530a4f84f40c45
   languageName: node
   linkType: hard
 
@@ -4496,9 +4496,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.668":
-  version: 1.4.790
-  resolution: "electron-to-chromium@npm:1.4.790"
-  checksum: 46f4f92370146478b4d1f6c9dc4b203e0f5861eeda2df73d76652dc13f04043b923049832ee1736361fae562c1eabb442c12d4b7d60969d58a65aa655dbdd28c
+  version: 1.4.796
+  resolution: "electron-to-chromium@npm:1.4.796"
+  checksum: 29829ba285b2bb765e3abb82023b006f1d214333d045ab434b2c6be964c5ce0a761e992bd9eab09f51ac2b31712a5b003ed34cf891a627bf80f37e79ccddd6ac
   languageName: node
   linkType: hard
 
@@ -8431,13 +8431,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-ttlock@npm:^2.1.4":
-  version: 2.1.4
-  resolution: "react-native-ttlock@npm:2.1.4"
+"react-native-ttlock-upgrade@https://github.com/ttlock/react-native-ttlock-upgrade.git":
+  version: 0.1.0
+  resolution: "react-native-ttlock-upgrade@https://github.com/ttlock/react-native-ttlock-upgrade.git#commit=46f9e1dc3cbf1edc1a0e8a46c39f520ccd1268be"
   peerDependencies:
     react: "*"
     react-native: "*"
-  checksum: 6149080fbfd449318068524d0ffdfc425f61f22aa26e97c4edcac9f01c6191b35949189734d2e0c4f6d029088a64e8386e44775935331d091fb0c0413d729faf
+  checksum: b6fc2070a3d08ce38303dd031192d80f7c92e2c0a0e93ff82d2e343ad830c711540b6b936430c509653d701c18d76c978d82c544ffbfd21bab615bbcbdb45785
   languageName: node
   linkType: hard
 
@@ -9525,8 +9525,8 @@ __metadata:
   linkType: hard
 
 "terser@npm:^5.15.0":
-  version: 5.31.0
-  resolution: "terser@npm:5.31.0"
+  version: 5.31.1
+  resolution: "terser@npm:5.31.1"
   dependencies:
     "@jridgewell/source-map": ^0.3.3
     acorn: ^8.8.2
@@ -9534,7 +9534,7 @@ __metadata:
     source-map-support: ~0.5.20
   bin:
     terser: bin/terser
-  checksum: 48f14229618866bba8a9464e9d0e7fdcb6b6488b3a6c4690fcf4d48df65bf45959d5ae8c02f1a0b3f3dd035a9ae340b715e1e547645b112dc3963daa3564699a
+  checksum: 6ab57e62e9cd690dc99b3d0ee2e07289cd3408109a950c7118bf39e32851a5bf08b67fe19e0ac43a5a98813792ac78101bf25e5aa524f05ae8bb4e0131d0feef
   languageName: node
   linkType: hard
 
@@ -10189,11 +10189,11 @@ __metadata:
   linkType: hard
 
 "yaml@npm:^2.2.1":
-  version: 2.4.3
-  resolution: "yaml@npm:2.4.3"
+  version: 2.4.4
+  resolution: "yaml@npm:2.4.4"
   bin:
     yaml: bin.mjs
-  checksum: cf466e40dcd39d816eb8a8fcbb069897a1ff4bff46a4bf7bb4b7940be3dfcc820901720e4ead71eb7db00229a554664161dbe4bbeb87b6ad0c1c78c12897955d
+  checksum: 5137778f7fe682ed867094376b023bf6c89fe3ee4b1ad0ec9a7d78a623cce2a167d90bb5c52cb7fda8815af6541c48b0f9afc09df733134debd3a2cdae20f0b0
   languageName: node
   linkType: hard
 
