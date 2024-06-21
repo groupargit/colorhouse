@@ -33,6 +33,7 @@ const Login = state => {
   function login(accessToken) {
     //Login exitoso
     if (accessToken) {
+      createLog(user);
       setLoading(false);
       navigation.navigate('NavigationTab');
     } else {
@@ -40,6 +41,54 @@ const Login = state => {
       Alert.alert('Error al iniciar sesión');
     }
   }
+
+  // Consumo de API con fetch
+  const createLog = async userActive => {
+    try {
+      const response = await fetch('http://192.168.32.3:8088/logger/', {
+        // Use 'localhost' instead of '0.0.0.0'
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user: user,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log('response object:', data);
+      console.log('log', data);
+    } catch (error) {
+      console.error('SyntaxError===', error);
+    }
+  };
+  // const createLog = async id => {
+  //   fetch(`http://0.0.0.0:8088/logger/`, {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: user,
+  //   })
+  //     .then(response => response.json())
+  //     .then(response => {
+  //       console.log('response object:', response);
+  //     })
+  //     .then(data => {
+  //       console.log('log', data);
+  //     })
+  //     .catch(error => {
+  //       console.log('error===', error);
+  //     })
+  //     .finally(() => {});
+  // };
   return (
     <ImageBackground
       source={require('../../../assets/background.png')}
@@ -49,8 +98,8 @@ const Login = state => {
           data={[
             {
               key: '1',
-              title: 'Cool package',
-              description: 'Loren ipsum dolor sit amet',
+              title: 'Apartamentos inteligentes',
+              description: 'Optimiza tus espacios',
               image,
             },
             {

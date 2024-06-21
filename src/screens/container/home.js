@@ -25,7 +25,7 @@ const Home = state => {
         </TouchableOpacity>
       </Header> */}
       <AsignaturaList />
-      {/* <ActivityList /> */}
+      <ActivityList />
     </Fragment>
   );
 };

@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
-import {FlatList, Button, Text, View, StyleSheet} from 'react-native';
+import {FlatList, Button, Text, View, StyleSheet, Image} from 'react-native';
 import Layout from '../components/asignatura-list-layout';
 import Empty from '../components/empty';
 import Separator from '../../videos/components/vertical-separator';
 import Asignatura from '../components/asignatura';
 import {useNavigation} from '@react-navigation/native';
 import {useAuth0} from 'react-native-auth0';
+import Carousel from 'react-native-intro-carousel';
+const image = require('../../../assets/GrouparLogo.png');
 
 const AsignaturaList = props => {
   const {user} = useAuth0();
@@ -64,13 +66,13 @@ const AsignaturaList = props => {
     <View style={styles.container}>
       {user ? (
         <Layout>
-          <FlatList
+          {/* <FlatList
             keyExtractor={keyExtractor}
             data={subject}
             ListEmptyComponent={renderEmpty}
             ItemSeparatorComponent={itemSeparator}
             renderItem={renderItem}
-          />
+          /> */}
         </Layout>
       ) : (
         //Return login screen
