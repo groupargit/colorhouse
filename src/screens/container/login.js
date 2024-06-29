@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {
   View,
   Text,
@@ -13,10 +13,73 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {useNavigation} from '@react-navigation/native';
 import {useAuth0} from 'react-native-auth0';
 import Carousel from 'react-native-intro-carousel';
+import useCreateLogger from '../../../utils/hooks/useCreateLogger';
+// /Users/iariza/Documents/github.com/igorariza/ColorHouse/utils/hooks/useCreateLogger.js
 const image = require('../../../assets/GrouparLogo.png');
 
 const Login = state => {
   const {authorize, clearSession, user, getCredentials} = useAuth0();
+  const [userLoged, setUserLoged] = useState(user);
+  const [loading, setLoading] = useState();
+  const navigation = useNavigation();
+  var userLogin = {
+    name: user?.name,
+    email: user?.email,
+  };
+  // const student_id = 101285;
+  const API = `http://localhost:8088/logger`;
+  const {coursesList, load} = useCreateLogger(API);
+
+  //   try {
+  //     const response = await fetch('http://localhost:8088/logger', {
+  //       method: 'POST',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(userLogin),
+  //     });
+
+  //     if (!response.ok) {
+  //       console.error('Error response.ok:', response.statusText);
+  //     }
+
+  //     const data = await response.json();
+  //     console.log('response object:', data);
+  //     console.log('log', data);
+  //   } catch (error) {
+  //     console.error('Error---:', error);
+  //   }
+  // };
+
+  /* Fetchin data from api */
+  //   async function getActivities(code) {
+  //     await fetch(
+  //       `https://api-gcp.sige-edu.com:8000/api/secctions/secction/byacademicharge/${code}`,
+  //       {
+  //         method: 'GET',
+  //         headers: {
+  //           Accept: 'application/json',
+  //           'Content-Type': 'application/json',
+  //         },
+  //       },
+  //     )
+  //       .then(response => response.json())
+  //       .then(data => {
+  //         setSecctions(data);
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //       })
+  //       .finally(() => {});
+  //   }
+
+  //   useEffect(() => {
+  //     getActivities(codeAcademicCharge);
+  //   }, []);
+  if (user) {
+    navigation.navigate('NavigationTab');
+  }
   const onLogin = async () => {
     setLoading(true);
     await authorize({}, {});
@@ -28,67 +91,18 @@ const Login = state => {
   const onLogout = async () => {
     await clearSession({}, {});
   };
-  const [loading, setLoading] = useState();
-  const navigation = useNavigation();
   function login(accessToken) {
     //Login exitoso
     if (accessToken) {
-      createLog(user);
+      // createLog(user);
       setLoading(false);
-      navigation.navigate('NavigationTab');
+      // navigation.navigate('NavigationTab');
     } else {
       setLoading(false);
       Alert.alert('Error al iniciar sesión');
     }
   }
 
-  // Consumo de API con fetch
-  const createLog = async userActive => {
-    try {
-      const response = await fetch('http://192.168.32.3:8088/logger/', {
-        // Use 'localhost' instead of '0.0.0.0'
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          user: user,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log('response object:', data);
-      console.log('log', data);
-    } catch (error) {
-      console.error('SyntaxError===', error);
-    }
-  };
-  // const createLog = async id => {
-  //   fetch(`http://0.0.0.0:8088/logger/`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: user,
-  //   })
-  //     .then(response => response.json())
-  //     .then(response => {
-  //       console.log('response object:', response);
-  //     })
-  //     .then(data => {
-  //       console.log('log', data);
-  //     })
-  //     .catch(error => {
-  //       console.log('error===', error);
-  //     })
-  //     .finally(() => {});
-  // };
   return (
     <ImageBackground
       source={require('../../../assets/background.png')}
